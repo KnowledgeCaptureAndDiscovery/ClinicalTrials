@@ -28,7 +28,7 @@ def get_trials(keyword):
         search = search + key[i]
         if i != last_ind:
             search += "+"
-    
+
     # clinical api server can only send 100 trials per request
     query_string = "https://clinicaltrials.gov/api/query/full_studies?expr=" + search + "&min_rnk=1&max_rnk=30&fmt=json"
     response = requests.get(query_string)
@@ -40,7 +40,7 @@ def get_trials(keyword):
     except KeyError:
         print("No FullStudies Section")
         return None
-    
+
     return full_studies
 
 
@@ -144,5 +144,6 @@ def parse_request(request):
     }
     result['type']=result['type'].lower()
     return result
-
-app.run(debug=True, host='0.0.0.0')
+    
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0', port=5000)
